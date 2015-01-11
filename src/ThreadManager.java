@@ -12,7 +12,6 @@ public class ThreadManager implements Runnable{
     //ArrayList<GetThreadIDS> getSearch = new ArrayList<GetThreadIDS>();
     //ArrayList<GetThreadIDS> toAddSearch = new ArrayList<GetThreadIDS>();
     //ArrayList<GetThreadIDS> toScrapSearch = new ArrayList<GetThreadIDS>();
-    String a;
 
     CopyOnWriteArrayList<FindImages> dlthreads = new CopyOnWriteArrayList<FindImages>(new ArrayList<FindImages>());
     CopyOnWriteArrayList<GetThreadIDS> tosearch = new CopyOnWriteArrayList<GetThreadIDS>(new ArrayList<GetThreadIDS>());
