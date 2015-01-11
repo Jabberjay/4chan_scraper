@@ -1,4 +1,4 @@
-import java.util.prefs.Preferences;
+
 
 public class Main{
 
@@ -17,6 +17,8 @@ public class Main{
          *
          *
          */
+
+        //URIget.cleardl();
 
         ThreadManager t = new ThreadManager();
         Thread f = new Thread(t);

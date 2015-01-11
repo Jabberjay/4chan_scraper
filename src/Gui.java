@@ -3,17 +3,10 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.io.*;
-import java.net.URI;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Properties;
-import java.util.prefs.Preferences;
 
-/**
- * Created by Jhonti on 10/01/2015.
- */
+
+
 public class Gui {
     JFrame frame = new JFrame();
     JTextField textField = new JTextField();
@@ -28,6 +21,8 @@ public class Gui {
     public Gui(ThreadManager manager) throws Exception{
 
         this.manager = manager;
+
+        frame.setTitle("chanDown V0.1");
 
         font = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("/res/VeraMono.ttf"));
         biggerFont = font.deriveFont(Font.BOLD, 12f);
@@ -51,9 +46,6 @@ public class Gui {
             @Override
             public void keyPressed(KeyEvent e){
                 if (e.getKeyCode() == 10) {
-                    /*textArea.append(textField.getText() + "\n");
-                    textField.setText("");
-                    textField.requestFocus();*/             ///HANDLEkey events here
                     try
                     {
                         interaction(textField.getText().split(" "));
@@ -117,7 +109,7 @@ public class Gui {
         }
         textArea.append("\n");
 
-        if(URIget.getDLPath() == "")
+        if(!URIget.checkDL())
         {
             textArea.append("You must set a download path before downloading" + "\n");
         }
@@ -125,12 +117,67 @@ public class Gui {
 
 
     private void interaction(String[] args){
+        boolean sorted = false;
         String in = "";
         for (String k : args)
         {
             in += k + " ";
         }
         textArea.append("> " + in + "\n");
+
+        if(args[0].equalsIgnoreCase("dlpath") || args[0].equalsIgnoreCase("d"))
+        {
+            sorted = true;
+
+            if(args[1].equalsIgnoreCase("set"))
+            {
+                String fullpath = "";
+                for (int s = 2; s < args.length; s++)
+                {
+                    fullpath += args[s] + " ";
+                }
+                fullpath = fullpath.substring(0, fullpath.length() - 1);
+
+                try
+                {
+                    System.out.println(fullpath);
+                }
+                catch(Exception e){}
+                if(URIget.setDLPath(fullpath))
+                {
+                    textArea.append("Download path set" + "\n");
+                }
+                else
+                {
+                    textArea.append("Invalid path" + "\n");
+                }
+            }
+            else if(args[1].equalsIgnoreCase("see") || args[1].equalsIgnoreCase("s"))
+            {
+                if(URIget.getDLPath().equalsIgnoreCase(""))
+                {
+                    textArea.append("Download path not yet set" + "\n");
+                }
+                else
+                {
+                    textArea.append(URIget.getDLPath() + "\n");
+                }
+
+            }
+            else
+            {
+                textArea.append("invalid command" + "\n");
+            }
+        }
+
+        if(!URIget.checkDL())
+        {
+            textArea.append("You must set a download path before downloading" + "\n");
+            textArea.append("\n");
+            textArea.setCaretPosition(textArea.getDocument().getLength());
+            return;
+        }
+
         if(args[0].equalsIgnoreCase("thread") || args[0].equalsIgnoreCase("t"))
         {
             if(args[1].equalsIgnoreCase("add") || args[1].equalsIgnoreCase("a"))
@@ -250,55 +297,12 @@ public class Gui {
                 textArea.append("invalid command" + "\n");
             }
         }
-        else if(args[0].equalsIgnoreCase("dlpath") || args[0].equalsIgnoreCase("d"))
-        {
-
-            if(args[1].equalsIgnoreCase("set"))
-            {
-                String fullpath = "";
-                for (int s = 2; s < args.length; s++)
-                {
-                    fullpath += args[s] + " ";
-                }
-                fullpath = fullpath.substring(0, fullpath.length() - 1);
-
-                try
-                {
-                    System.out.println(fullpath);
-                }
-                catch(Exception e){}
-                if(URIget.setDLPath(fullpath))
-                {
-                    textArea.append("Download path set" + "\n");
-                }
-                else
-                {
-                    textArea.append("Invalid path" + "\n");
-                }
-            }
-            else if(args[1].equalsIgnoreCase("see") || args[1].equalsIgnoreCase("s"))
-            {
-                if(URIget.getDLPath().equalsIgnoreCase(""))
-                {
-                    textArea.append("Download path not yet set" + "\n");
-                }
-                else
-                {
-                    textArea.append(URIget.getDLPath() + "\n");
-                }
-
-            }
-            else
-            {
-                textArea.append("invalid command" + "\n");
-            }
-        }
         else if (args[0].equalsIgnoreCase("killall") || args[0].equalsIgnoreCase("ka"))
         {
             manager.killall();
             textArea.append("Killed everything" + "\n");
         }
-        else
+        else if (!sorted)
         {
             textArea.append("invalid command" + "\n");
         }
