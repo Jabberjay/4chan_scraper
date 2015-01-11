@@ -55,24 +55,6 @@ public class ThreadManager implements Runnable{
                 }
                 Thread.sleep(1000);
             }
-
-            /*for (FindImages f : toScrap)
-            {
-                Threads.remove(f);
-                System.out.println("Just scrapped a thread");
-            }
-
-            for (FindImages f : toAdd)
-            {
-                Threads.add(f);
-                System.out.println("Just added a thread");
-            }
-
-            for (GetThreadIDS t : toAddSearch)
-            {
-                getSearch.add(t);
-            }*/
-
             Thread.sleep(1000);
         }
     }
