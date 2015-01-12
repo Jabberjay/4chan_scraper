@@ -115,7 +115,10 @@ public class Gui {
         }
     }
 
-
+    /**
+     * TODO:
+     *      Clean up this method
+     */
     private void interaction(String[] args){
         boolean sorted = false;
         String in = "";
