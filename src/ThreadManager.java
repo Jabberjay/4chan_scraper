@@ -5,13 +5,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * Created by Jhonti on 09/01/2015.
  */
 public class ThreadManager implements Runnable{
-    //ArrayList<FindImages> Threads = new ArrayList<FindImages>();
-    //ArrayList<FindImages> toAdd = new ArrayList<FindImages>();
-    //ArrayList<FindImages> toScrap = new ArrayList<FindImages>();
-
-    //ArrayList<GetThreadIDS> getSearch = new ArrayList<GetThreadIDS>();
-    //ArrayList<GetThreadIDS> toAddSearch = new ArrayList<GetThreadIDS>();
-    //ArrayList<GetThreadIDS> toScrapSearch = new ArrayList<GetThreadIDS>();
 
     CopyOnWriteArrayList<FindImages> dlthreads = new CopyOnWriteArrayList<FindImages>(new ArrayList<FindImages>());
     CopyOnWriteArrayList<GetThreadIDS> tosearch = new CopyOnWriteArrayList<GetThreadIDS>(new ArrayList<GetThreadIDS>());
