@@ -12,7 +12,6 @@ public class Main{
          *      Download whole thread page
          *      Use proxy
          *
-         *
          *      /b/thread/num
          *
          *
@@ -25,5 +24,4 @@ public class Main{
         f.start();
         Gui x = new Gui(t);
     }
-
 }

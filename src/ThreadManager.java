@@ -1,9 +1,8 @@
 import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-/**
- * Created by Jhonti on 09/01/2015.
- */
+
+
 public class ThreadManager implements Runnable{
 
     CopyOnWriteArrayList<FindImages> dlthreads = new CopyOnWriteArrayList<FindImages>(new ArrayList<FindImages>());
@@ -33,7 +32,6 @@ public class ThreadManager implements Runnable{
                     dlthreads.remove(f);
                     System.out.println("Added a thread to scrap list");
                 }
-                Thread.sleep(1000);
             }
 
             for (GetThreadIDS t : tosearch)
@@ -46,9 +44,7 @@ public class ThreadManager implements Runnable{
                     t.Threads.poll();
                     Thread.sleep(1000);
                 }
-                Thread.sleep(1000);
             }
-            Thread.sleep(1000);
         }
     }
 
