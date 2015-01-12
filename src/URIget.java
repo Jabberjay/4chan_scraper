@@ -8,6 +8,7 @@ import java.util.prefs.Preferences;
 public class URIget {
 
     static Preferences prefs = Preferences.userNodeForPackage(URIget.class);
+
     static final ArrayList<String> boards = new ArrayList<String>(Arrays.asList("a", "b", "c", "d", "e", "f", "g", "gif", "h", "hr", "k", "m", "o", "p", "r", "s", "t", "u", "v", "vg",
             "vr", "w", "wg", "", "i", "ic", "r9k", "s4s", "cm", "hm", "lgbt", "y", "3", "adv", "an", "asp", "biz",
             "cgl", "ck", "co", "diy", "fa", "fit", "gd", "hc", "int", "jp", "lit", "mlp", "mu", "n", "out", "po",
