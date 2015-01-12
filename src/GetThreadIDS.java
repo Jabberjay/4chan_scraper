@@ -7,7 +7,6 @@ public class GetThreadIDS{
 
     public String ToSearch;
     public String board;
-    String decoy;
     public PriorityQueue<String> Threads = new PriorityQueue<String>();
     public HashSet threadsDone = new HashSet();
 
