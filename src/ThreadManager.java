@@ -42,7 +42,7 @@ public class ThreadManager implements Runnable{
                 {
                     addThread(new FindImages(t.Threads.peek()));
                     t.Threads.poll();
-                    Thread.sleep(1000);
+                    Thread.sleep(200);
                 }
             }
         }

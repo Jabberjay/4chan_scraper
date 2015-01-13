@@ -29,8 +29,9 @@ public class FindImages{
     }
 
     public boolean scrapeImages(){
-        try {
-            final WebClient webClient = new WebClient(BrowserVersion.FIREFOX_17);
+        try
+        {
+            final WebClient webClient = new WebClient(BrowserVersion.FIREFOX_24);
             final HtmlPage page = webClient.getPage(url);
 
             final String pageAsXml = page.asXml();
@@ -47,7 +48,9 @@ public class FindImages{
                     System.out.println("http://" + spliton + PageHtml[i].substring(0, PageHtml[i].indexOf("\"")));
                     System.out.println("Imagesdone has " + ImagesDone.size());
 
-                }else{
+                }
+                else
+                {
                     System.out.println("An image was rejected");
                 }
             }

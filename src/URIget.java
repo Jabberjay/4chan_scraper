@@ -53,7 +53,6 @@ public class URIget {
 
         if(path.isDirectory())
         {
-            System.out.println("kek");
             prefs.put("dlpath", uri);
             return true;
         }
@@ -80,7 +79,7 @@ public class URIget {
 
     /*public static void cleardl(){
         prefs.put("dlpath", "");
-    }*/
+    }   For testing purposes    */
 
     public static boolean checkDL(){
         File path = new File(prefs.get("dlpath", ""));

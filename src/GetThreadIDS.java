@@ -15,12 +15,26 @@ public class GetThreadIDS{
         this.board = board;
     }
 
-    public void scrapeIDS() throws Exception{
-        System.out.println("1");
-        java.util.logging.Logger.getLogger("com.gargoylesoftware").setLevel(java.util.logging.Level.OFF);   //Initialises web client and sets it up
-        final WebClient webClient = new WebClient(BrowserVersion.FIREFOX_17);
-        final HtmlPage page = webClient.getPage(URIget.getSearchURL(ToSearch, board));
-        System.out.println("2");
+    public void scrapeIDS(){
+        WebClient webClient = new WebClient(BrowserVersion.FIREFOX_24);
+        HtmlPage page;
+        try
+        {
+            System.out.println("1");
+            //java.util.logging.Logger.getLogger("com.gargoylesoftware").setLevel(java.util.logging.Level.OFF);   //Initialises web client and sets it up
+            System.out.println("111");
+            System.out.println("1111");
+            page = webClient.getPage(URIget.getSearchURL(ToSearch, board)); //PUT IN TRY CATCH
+            System.out.println("11111");
+        }
+        catch(Exception e)
+        {
+            System.out.println("That annoying error happened again...");
+            System.out.println(ToSearch);
+            System.out.println(board);
+            return;
+        }
+
 
         final List<?> divs = page.getByXPath("//div"); //Contains all divs and their elements
 
