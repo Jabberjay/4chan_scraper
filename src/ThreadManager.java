@@ -22,6 +22,7 @@ public class ThreadManager implements Runnable{
             for (FindImages f : dlthreads)
             {
                 System.out.println("Thread size is " + dlthreads.size());
+                System.out.println("From search: " + f.search_term);
 
                 if(f.scrapeImages())
                 {
@@ -37,10 +38,11 @@ public class ThreadManager implements Runnable{
             for (GetThreadIDS t : tosearch)
             {
                 System.out.println("Checking... for more...");
+                System.out.println("Searching: " + t.ToSearch);
                 t.scrapeIDS();
                 while (t.Threads.size() != 0)
                 {
-                    addThread(new FindImages(t.Threads.peek()));
+                    addThread(new FindImages(t.Threads.peek(), t.ToSearch));
                     t.Threads.poll();
                     Thread.sleep(200);
                 }

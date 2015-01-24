@@ -15,7 +15,7 @@ public class URIget {
             "pol", "sci", "soc", "sp", "tg", "toy", "trv", "tv", "vp", "wsg", "x"));
 
     public static String getSearchURL(String ToSearch, String board){
-        return "http://4chan.org/" + board + "/" + ToSearch;
+        return "https://4chan.org/" + board + "/" + ToSearch;
     }
 
     public static String getThreadURL(String id, String board){

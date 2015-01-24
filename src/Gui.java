@@ -188,7 +188,7 @@ public class Gui {
 
                 try
                 {
-                    if(manager.addThread(new FindImages(args[2])))
+                    if(manager.addThread(new FindImages(args[2], "")))
                     {
                         textArea.append("Thread added!" + "\n");
                     }

@@ -20,12 +20,8 @@ public class GetThreadIDS{
         HtmlPage page;
         try
         {
-            System.out.println("1");
             //java.util.logging.Logger.getLogger("com.gargoylesoftware").setLevel(java.util.logging.Level.OFF);   //Initialises web client and sets it up
-            System.out.println("111");
-            System.out.println("1111");
             page = webClient.getPage(URIget.getSearchURL(ToSearch, board)); //PUT IN TRY CATCH
-            System.out.println("11111");
         }
         catch(Exception e)
         {
@@ -58,10 +54,7 @@ public class GetThreadIDS{
                 threadsDone.add(toAdd);
             }
             index = threads.indexOf("<div id=\"thread-", index + 1);
-            System.out.println("3");
         }
-        System.out.println("3");
-
         webClient.closeAllWindows();
 
     }

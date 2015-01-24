@@ -10,19 +10,22 @@ import org.json.JSONObject;
  * Created by Jhonti on 07/01/2015.
  */
 public class FindImages{
+    public String search_term = "";
     public String id;
     public String board;
     public String url;
     private HashSet ImagesDone = new HashSet();
     public PriorityQueue<String> Images = new PriorityQueue<String>();
 
-    public FindImages(String id, String board) throws Exception{
+    public FindImages(String id, String board, String search_term) throws Exception{
+        this.search_term = search_term;
         this.id = id;
         this.board = board;
         url = URIget.getThreadURL(this.id, this.board);
     }
 
-    public FindImages(String url) throws Exception{
+    public FindImages(String url, String search_term) throws Exception{
+        this.search_term = search_term;
         this.url = url;
         this.id = URIget.getIDandBoard(url)[0];
         this.board = URIget.getIDandBoard(url)[1];
@@ -79,7 +82,7 @@ public class FindImages{
         }
         catch(Exception e)
         {
-            return true;
+            return false;
         }
         JSONObject json = new JSONObject(pageJSON);
         JSONArray array = (JSONArray) json.get("posts");
