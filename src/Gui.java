@@ -22,7 +22,7 @@ public class Gui {
 
         this.manager = manager;
 
-        frame.setTitle("chanDown V0.2");
+        frame.setTitle("chanDown V0.3");
 
         font = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("/res/VeraMono.ttf"));
         biggerFont = font.deriveFont(Font.BOLD, 12f);

@@ -167,6 +167,4 @@ public class ThreadManager implements Runnable{
         }
         return searching;
     }
-
-
 }

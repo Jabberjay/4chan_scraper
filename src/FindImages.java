@@ -1,10 +1,11 @@
 import com.gargoylesoftware.htmlunit.BrowserVersion;
+import com.gargoylesoftware.htmlunit.Page;
 import com.gargoylesoftware.htmlunit.WebClient;
-import com.gargoylesoftware.htmlunit.html.HtmlPage;
-
+import com.gargoylesoftware.htmlunit.WebResponse;
 import java.util.HashSet;
 import java.util.PriorityQueue;
-
+import org.json.JSONArray;
+import org.json.JSONObject;
 /**
  * Created by Jhonti on 07/01/2015.
  */
@@ -19,7 +20,6 @@ public class FindImages{
         this.id = id;
         this.board = board;
         url = URIget.getThreadURL(this.id, this.board);
-        ///scrapeImages();
     }
 
     public FindImages(String url) throws Exception{
@@ -28,7 +28,8 @@ public class FindImages{
         this.board = URIget.getIDandBoard(url)[1];
     }
 
-    public boolean scrapeImages(){
+    /*public boolean scrapeImages(){
+        if(!scrapeImages_JSON()) System.out.println("no kek");
         try
         {
             final WebClient webClient = new WebClient(BrowserVersion.FIREFOX_24);
@@ -64,7 +65,51 @@ public class FindImages{
         }
 
         return true;
+    }*/
 
+    public boolean scrapeImages(){
+        String pageJSON;
+        try
+        {
+            final WebClient webClient = new WebClient(BrowserVersion.FIREFOX_24);
+            final Page page = webClient.getPage(URIget.getThreadURL_JSON(id, board));
+            WebResponse response = page.getWebResponse();
+            pageJSON = response.getContentAsString();
+            if (pageJSON.equalsIgnoreCase("")) return false;
+        }
+        catch(Exception e)
+        {
+            return true;
+        }
+        JSONObject json = new JSONObject(pageJSON);
+        JSONArray array = (JSONArray) json.get("posts");
+        /*for (int i = 0; i < array.length(); i++)
+        {
+            try
+            {
+                JSONObject j = new JSONObject(array.get(i).toString());
+                String image_url = "http://i.4cdn.org/" + board + "/" + j.get("tim") + j.get("ext").toString();
+                if(ImagesDone.contains(image_url))
+                {
+                    Images.offer(image_url);
+                }
+            }catch (Exception e){}
+        }*/
+
+        for (int i = array.length(); i > 0; i--)
+        {
+            try
+            {
+                JSONObject j = new JSONObject(array.get(i).toString());
+                String image_url = "http://i.4cdn.org/" + board + "/" + j.get("tim") + j.get("ext").toString();
+                if(ImagesDone.contains(image_url)) break;
+                Images.offer(image_url);
+                ImagesDone.add(image_url);
+            }catch (Exception e){}
+        }
+
+
+        return true;
     }
 
 }

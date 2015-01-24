@@ -3,7 +3,6 @@ import java.io.FileOutputStream;
 import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
-import java.nio.file.Path;
 
 
 public class Downloader {
@@ -39,6 +38,7 @@ public class Downloader {
                 ReadableByteChannel rbc = Channels.newChannel(website.openStream());
                 FileOutputStream fos = new FileOutputStream(path.getPath() + "\\" + URIget.getImageName(thethread.Images.peek()));
                 fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
+                fos.close();
             }
             catch(Exception e)
             {

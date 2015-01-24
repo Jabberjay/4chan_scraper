@@ -22,6 +22,10 @@ public class URIget {
         return "http://boards.4chan.org/" + board + "/thread/" + id;
     }
 
+    public static String getThreadURL_JSON(String id, String board){
+        return "http://api.4chan.org/" + board + "/res/" + id + ".json";
+    }
+
     public static String getImageName(String url){
         return url.substring(url.indexOf("/", 18));
     }
@@ -77,9 +81,9 @@ public class URIget {
         }
     }
 
-    /*public static void cleardl(){
+    public static void cleardl(){
         prefs.put("dlpath", "");
-    }   For testing purposes    */
+    }   //For testing purposes
 
     public static boolean checkDL(){
         File path = new File(prefs.get("dlpath", ""));
@@ -92,9 +96,4 @@ public class URIget {
             return false;
         }
     }
-
-
-
-
-
 }
